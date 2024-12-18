@@ -1,5 +1,5 @@
-//passo 4: al termine della partita visualizzare l'eventuale vincitore, 
-//contando solo il numero di risposte corrette (non il tempo impiegato)
+//passo 5: calcolare il tempo impiegato da un giocatore per dare la risposta.
+//Utilizzare l' istruzione System.currentTimeMillis come nel seguente esempio:
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,7 +26,14 @@ public class App
 
             System.out.println("Inserisci una parola che contiene: " + parola);
 
+            long inizioTempoMillisecondi = System.currentTimeMillis();
+
             parolaUtente = input.nextLine();
+
+            long fineTempoMillisecondi = System.currentTimeMillis();
+
+            long secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
+            System.out.println("Secondi trascorsi: " + secondiTrascorsi);
 
             String[] pezziParola=parolaUtente.split(" ");
             if (pezziParola.length>1) 
@@ -48,9 +55,16 @@ public class App
             parola = parole[r.nextInt(10)];
     
             System.out.println("Inserisci una parola che contiene: " + parola);
-    
+            
+            inizioTempoMillisecondi = System.currentTimeMillis();
+
             parolaUtente = input.nextLine();
 
+            fineTempoMillisecondi = System.currentTimeMillis();
+
+            secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
+            System.out.println("Secondi trascorsi: " + secondiTrascorsi);   
+            
             if (pezziParola.length>1) 
             {
                 System.out.println("Devi inserire una parola unica");
