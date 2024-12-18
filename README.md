@@ -41,3 +41,29 @@ long inizioTempoMillisecondi = System.currentTimeMillis();
 long fineTempoMillisecondi = System.currentTimeMillis();
 long secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
 System.out.println("Secondi trascorsi: " + secondiTrascorsi);
+
+passo 6: verificare che la parola inserita dall'utente sia esistente.
+
+Scaricare un file delle parole ammissibili, ad esempio dall'indirizzo: https://github.com/napolux/paroleitaliane/tree/master/paroleitaliane (consigliato 280000_parole_italiane.txt)
+
+Caricare l'elenco di tutte le parole esistenti dal file in un'ArrayList (vedi codice seguente) ed utilizzarla per fare la verifica.
+
+String nomeFile = "280000_parole_italiane.txt";
+
+ArrayList<String> paroleAmmesse = new ArrayList<>();
+
+try {
+    FileReader fileReader = new FileReader(nomeFile);
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+    String riga;
+
+    while ((riga = bufferedReader.readLine()) != null)  
+        paroleAmmesse.add(riga.trim());
+
+    bufferedReader.close();
+
+} catch (IOException e) {
+    System.err.println("Errore durante la lettura del file: " + e.getMessage());
+}
+passo 7: verificare che la parola inserita dall'utente non sia già stata data precedentemente
