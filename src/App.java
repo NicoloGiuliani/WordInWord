@@ -1,4 +1,5 @@
-// passo 3: memorizzare in due arraylist diverse le risposte corrette dei due giocatori
+//passo 4: al termine della partita visualizzare l'eventuale vincitore, 
+//contando solo il numero di risposte corrette (non il tempo impiegato)
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,9 +28,15 @@ public class App
 
             parolaUtente = input.nextLine();
 
+            String[] pezziParola=parolaUtente.split(" ");
+            if (pezziParola.length>1) 
+            {
+                System.out.println("Devi inserire una parola unica");
+            }
+
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
-            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola))
+            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length==1)
             {
                 System.out.println("è contenuta");
                 giocatore1.add(parolaUtente);
@@ -44,9 +51,14 @@ public class App
     
             parolaUtente = input.nextLine();
 
+            if (pezziParola.length>1) 
+            {
+                System.out.println("Devi inserire una parola unica");
+            }
+
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
-            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola))
+            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length==1)
             {
                 System.out.println("è contenuta");
                 giocatore2.add(parolaUtente);
@@ -54,6 +66,15 @@ public class App
             else
                 System.out.println("non è contenuta");
         }
+        if (giocatore1.size()>giocatore2.size()) 
+        {
+            System.out.println("Ha vinto il giocatore 1 "+giocatore1.size()+" a "+giocatore2.size());
+        }
+        else if (giocatore2.size()>giocatore1.size()) 
+        {
+            System.out.println("Ha vinto il giocatore 2 "+giocatore2.size()+" a "+giocatore1.size());
+        }
+        else System.out.println("Pareggio "+giocatore2.size()+" a "+giocatore1.size());
         input.close();
     }
 }
