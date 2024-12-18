@@ -1,4 +1,4 @@
-//passo 6: verificare che la parola inserita dall'utente sia esistente.
+//passo 7: verificare che la parola inserita dall'utente non sia già stata data precedentemente
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -57,7 +57,7 @@ public class App {
 
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
-            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length == 1 && paroleAmmesse.indexOf(parolaUtente)>=0) {
+            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length == 1 && paroleAmmesse.indexOf(parolaUtente)>=0 && !(giocatore2.contains(parolaUtente)) && !(giocatore1.contains(parolaUtente)) && secondiTrascorsi<=10) {
                 System.out.println("è contenuta");
                 giocatore1.add(parolaUtente);
             } else if (pezziParola.length > 1) {
@@ -68,8 +68,16 @@ public class App {
             }
             else if (parolaUtente.equals(parola)) {
                 System.out.println("Non puoi inserire la stessa parola");
-            } else System.out.println("Parola non valida");
-
+            }
+            else if ((giocatore2.contains(parolaUtente)) || (giocatore1.contains(parolaUtente))) {
+                System.out.println("Parola già inserita");
+            }
+            else if (secondiTrascorsi>10) {
+                System.out.println("Tempo scaduto, hai massimo 10 secondi");
+            }
+            else System.out.println("Parola non valida");
+            
+            System.out.println();
             System.out.println("Turno " + (i + 1) + " giocatore 2");
             parola = parole[r.nextInt(10)];
 
@@ -82,13 +90,14 @@ public class App {
             fineTempoMillisecondi = System.currentTimeMillis();
 
             secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
+            
             System.out.println("Secondi trascorsi: " + secondiTrascorsi);
             
             pezziParola = parolaUtente.split(" ");
 
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
-            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length == 1 && paroleAmmesse.indexOf(parolaUtente)>=0) {
+            if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola) && pezziParola.length == 1 && paroleAmmesse.indexOf(parolaUtente)>=0 && !(giocatore2.contains(parolaUtente)) && !(giocatore1.contains(parolaUtente)) && secondiTrascorsi<=10) {
                 System.out.println("è contenuta");
                 giocatore2.add(parolaUtente);
             } else if (pezziParola.length > 1) {
@@ -99,8 +108,23 @@ public class App {
             }
             else if (parolaUtente.equals(parola)) {
                 System.out.println("Non puoi inserire la stessa parola");
-            } else System.out.println("Parola non valida");
+            }
+            else if ((giocatore2.contains(parolaUtente)) || (giocatore1.contains(parolaUtente))) {
+                System.out.println("Parola già inserita");
+            }
+            else if (secondiTrascorsi>10) {
+                System.out.println("Tempo scaduto, hai massimo 10 secondi");
+            }
+            else System.out.println("Parola non valida");
+            System.out.println();
         }
+        
+        System.out.println();
+        System.out.println("Le parole inserite correttamente dal giocatore 1 sono: "+giocatore1.toString());
+        System.out.println();
+        System.out.println("Le parole inserite correttamente dal giocatore 2 sono: "+giocatore2.toString());
+        System.out.println();
+
         if (giocatore1.size() > giocatore2.size()) {
             System.out.println("Ha vinto il giocatore 1 " + giocatore1.size() + " a " + giocatore2.size());
         } else if (giocatore2.size() > giocatore1.size()) {
