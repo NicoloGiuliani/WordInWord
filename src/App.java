@@ -1,6 +1,6 @@
-// passo 2: mostrare il turno e il giocatore corrente.
-//Per ogni turno devono giocare entrambi i giocatori. Ripetere per 5 turni
+// passo 3: memorizzare in due arraylist diverse le risposte corrette dei due giocatori
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,6 +15,8 @@ public class App
         String parola = "";
         int turni = 5;
         String parolaUtente="";
+        ArrayList <String> giocatore1=new ArrayList<>();
+        ArrayList <String> giocatore2=new ArrayList<>();
 
         for (int i = 0; i < turni; i++) 
         {
@@ -28,7 +30,10 @@ public class App
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
             if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola))
+            {
                 System.out.println("è contenuta");
+                giocatore1.add(parolaUtente);
+            }
             else
                 System.out.println("non è contenuta");
 
@@ -42,14 +47,13 @@ public class App
             // indexOf restistuisce la posizione della parolaUtente all'interno di parola,
             // oppure -1 se non è contenuta
             if (parolaUtente.indexOf(parola) >= 0 && !parolaUtente.equals(parola))
+            {
                 System.out.println("è contenuta");
+                giocatore2.add(parolaUtente);
+            }
             else
                 System.out.println("non è contenuta");
-
         }
-
-        
-
         input.close();
     }
 }
