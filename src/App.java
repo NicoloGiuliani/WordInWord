@@ -37,6 +37,8 @@ public class App {
         String parolaUtente = "";
         ArrayList<String> giocatore1 = new ArrayList<>();
         ArrayList<String> giocatore2 = new ArrayList<>();
+        int tempoTotaleGiocatore1=0;
+        int tempoTotaleGiocatore2=0;
 
         for (int i = 0; i < turni; i++) {
             System.out.println("Turno " + (i + 1) + " giocatore 1");
@@ -52,6 +54,7 @@ public class App {
 
             long secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
             System.out.println("Secondi trascorsi: " + secondiTrascorsi);
+            tempoTotaleGiocatore1+=secondiTrascorsi;
 
             String[] pezziParola = parolaUtente.split(" ");
 
@@ -92,6 +95,7 @@ public class App {
             secondiTrascorsi = (fineTempoMillisecondi - inizioTempoMillisecondi) / 1000;
             
             System.out.println("Secondi trascorsi: " + secondiTrascorsi);
+            tempoTotaleGiocatore2+=secondiTrascorsi;
             
             pezziParola = parolaUtente.split(" ");
 
@@ -121,8 +125,10 @@ public class App {
         
         System.out.println();
         System.out.println("Le parole inserite correttamente dal giocatore 1 sono: "+giocatore1.toString());
+        System.out.println("Secondi trascorsi "+tempoTotaleGiocatore1);
         System.out.println();
         System.out.println("Le parole inserite correttamente dal giocatore 2 sono: "+giocatore2.toString());
+        System.out.println("Secondi trascorsi "+tempoTotaleGiocatore2);
         System.out.println();
 
         if (giocatore1.size() > giocatore2.size()) {
@@ -131,6 +137,9 @@ public class App {
             System.out.println("Ha vinto il giocatore 2 " + giocatore2.size() + " a " + giocatore1.size());
         } else
             System.out.println("Pareggio " + giocatore2.size() + " a " + giocatore1.size());
+            if (tempoTotaleGiocatore1<tempoTotaleGiocatore2) {
+                System.out.println("Vince il giocatore 1 con "+tempoTotaleGiocatore1+" secondi trascorsi");
+            }else System.out.println("Vince il giocatore 2 con "+tempoTotaleGiocatore2+" secondi trascorsi");
         input.close();
     }
 }
